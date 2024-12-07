@@ -2,16 +2,17 @@ package com.flexdevit.relay42.iot.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class RelayMessage {
-    private String serialNumber;
-    private SENSOR_TYPE sensorType;
-    private UNIT_OF_MEASURE unitOfMeasure;
-    private double value;
+@EqualsAndHashCode(callSuper=true)
+public class RelayMessageEvent extends RelayMessage {
+    LocalDateTime timestamp;
 }

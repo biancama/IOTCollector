@@ -10,7 +10,18 @@ services:
       - "9001:9001"
     networks:
       - mqtt-app
-
+  mongo:
+    ports:
+      - '27017:27017'
+    container_name: iot-collector-mongo
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=forzajuve
+    image: mongo
 networks:
   mqtt-app:
     external: false
