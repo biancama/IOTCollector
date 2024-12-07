@@ -21,17 +21,22 @@
   </scm>
   <properties>
     <java.version>17</java.version>
+    <junit.version>3.8.1</junit.version>
+    <lombok.version>1.18.36</lombok.version>
   </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter</artifactId>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
       </dependency>
+      <!-- Test -->
       <dependency>
-        <groupId>org.springframework.integration</groupId>
-        <artifactId>spring-integration-mqtt</artifactId>
-        <version>6.4.0</version>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -40,17 +45,9 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <!--	<build>-->
-  <!--		<plugins>-->
-  <!--			<plugin>-->
-  <!--				<groupId>org.springframework.boot</groupId>-->
-  <!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-  <!--			</plugin>-->
-  <!--		</plugins>-->
-  <!--	</build>-->
   <modules>
     <module>core-libs</module>
     <module>iot-collector-server</module>
-    <module>iot-sernsors-gateway</module>
+    <module>iot-sensors-gateway</module>
   </modules>
 </project>
