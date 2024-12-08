@@ -1,6 +1,6 @@
 package com.flexdevit.relay42.iot.server.model.mongo;
 
-import com.flexdevit.relay42.iot.message.RelayMessageEvent;
+import com.flexdevit.relay42.iot.server.message.RelayMessageEvent;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

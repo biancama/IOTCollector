@@ -2,7 +2,7 @@ package com.flexdevit.relay42.iot.server.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flexdevit.relay42.iot.server.mapper.mongo.MongoEntityMapper;
-import com.flexdevit.relay42.iot.message.RelayMessage;
+import com.flexdevit.relay42.iot.server.message.RelayMessage;
 import com.flexdevit.relay42.iot.server.repository.mongodb.MessageRelayRepository;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;

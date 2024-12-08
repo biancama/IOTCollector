@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.flexdevit.relay42.iot.message.SENSOR_TYPE.*;
-import static com.flexdevit.relay42.iot.message.UNIT_OF_MEASURE.*;
+import static com.flexdevit.relay42.iot.server.message.SENSOR_TYPE.*;
+import static com.flexdevit.relay42.iot.server.message.UNIT_OF_MEASURE.*;
 
 public class BaseTest {
     private static DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");

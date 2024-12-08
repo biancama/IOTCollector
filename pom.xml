@@ -60,7 +60,6 @@
     </plugins>
   </build>
   <modules>
-    <module>core-libs</module>
     <module>iot-collector-server</module>
     <module>iot-sensors-gateway</module>
     <module>iot-sensor</module>

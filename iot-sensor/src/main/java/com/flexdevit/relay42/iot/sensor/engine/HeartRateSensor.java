@@ -8,18 +8,18 @@ import com.flexdevit.relay42.iot.sensor.util.RandomDataGenerator;
 import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class TemperatureSensor extends EngineSensor {
-    public TemperatureSensor(IMqttClient client, String serialNumber, String topic, long period) {
+public class HeartRateSensor extends EngineSensor {
+    public HeartRateSensor(IMqttClient client, String serialNumber, String topic, long period) {
         super(client, serialNumber, topic, period);
     }
 
     @Override
     public MqttMessage readValue() throws JsonProcessingException {
-        var valueRandom = RandomDataGenerator.nextDouble(10.0, 35.0);
+        var valueRandom = RandomDataGenerator.nextDouble(60, 150.0);
 
         var messageRelay = RelayMessage.builder()
-                .sensorType(SENSOR_TYPE.THERMOSTAT)
-                .unitOfMeasure(UNIT_OF_MEASURE.CELSIUS)
+                .sensorType(SENSOR_TYPE.HEART_RATE_SENSOR)
+                .unitOfMeasure(UNIT_OF_MEASURE.BPM)
                 .serialNumber(serialNumber)
                 .value(valueRandom)
                 .build();

@@ -1,6 +1,8 @@
 package com.flexdevit.relay42.iot.sensor;
 
+import com.flexdevit.relay42.iot.sensor.engine.CarFuelSensor;
 import com.flexdevit.relay42.iot.sensor.engine.EngineSensor;
+import com.flexdevit.relay42.iot.sensor.engine.HeartRateSensor;
 import com.flexdevit.relay42.iot.sensor.engine.TemperatureSensor;
 import com.flexdevit.relay42.iot.sensor.mqtt.SensorMqttClient;
 import com.flexdevit.relay42.iot.sensor.util.Function4;
@@ -37,6 +39,8 @@ public class Processor implements Callable<Optional<EngineSensor>> {
 
     private Map<String, Function4<MqttClient, String, String, Integer, EngineSensor>> sensors = new HashMap<>() {{
        put("TEMP", (publisher, serialNumber, topic, period) -> new TemperatureSensor(publisher, serialNumber, topic, period));
+       put("HEART_RATE", (publisher, serialNumber, topic, period) -> new HeartRateSensor(publisher, serialNumber, topic, period));
+       put("FUEL_READER", (publisher, serialNumber, topic, period) -> new CarFuelSensor(publisher, serialNumber, topic, period));
     }};
 
     @Override

@@ -1,6 +1,6 @@
 package com.flexdevit.relay42.iot.server.mapper.mongo;
 
-import com.flexdevit.relay42.iot.message.RelayMessage;
+import com.flexdevit.relay42.iot.server.message.RelayMessage;
 import com.flexdevit.relay42.iot.server.model.RelayMessageModel;
 import com.flexdevit.relay42.iot.server.model.mongo.RelayMessageEventEntity;
 import org.mapstruct.Mapper;

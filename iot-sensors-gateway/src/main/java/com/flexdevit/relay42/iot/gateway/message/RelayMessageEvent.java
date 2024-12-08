@@ -1,4 +1,4 @@
-package com.flexdevit.relay42.iot.message;
+package com.flexdevit.relay42.iot.gateway.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

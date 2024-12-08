@@ -2,7 +2,7 @@ package com.flexdevit.relay42.iot.gateway.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flexdevit.relay42.iot.gateway.IoTGateway;
-import com.flexdevit.relay42.iot.message.RelayMessage;
+import com.flexdevit.relay42.iot.gateway.message.RelayMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;

@@ -1,7 +1,7 @@
 package com.flexdevit.relay42.iot.server.model;
 
-import com.flexdevit.relay42.iot.message.SENSOR_TYPE;
-import com.flexdevit.relay42.iot.message.UNIT_OF_MEASURE;
+import com.flexdevit.relay42.iot.server.message.SENSOR_TYPE;
+import com.flexdevit.relay42.iot.server.message.UNIT_OF_MEASURE;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

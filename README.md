@@ -9,10 +9,19 @@ Simple server for collecting Iot data from multiple devices.
 * docker-compose 
 
 ### Run all containers with the solution
+If you want simply to test the app and not check the solution
+
+Open a terminal in the project root and run:
+
+`docker-compose --file docker-compose-with-solution.yml up -d`
 
 ### Build the app
+If you want to check the app and run step by step
+
 Open a terminal in the project root and run:
+
 `mvn clean package`
+
 it will compile build and run all the tests
 
 ### Before Run the application

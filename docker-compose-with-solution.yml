@@ -1,3 +1,79 @@
 include:
   - ./docker-compose.yml
 services:
+  iot-collector-server:
+    container_name: iot-collector-server
+    build:
+      context: iot-collector-server
+      dockerfile: Dockerfile
+    image: iot-collector-server:latest
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    ports:
+      - 9090:9090
+    networks:
+      - mqtt-app
+    depends_on:
+      - mqtt-broker
+      - mongo
+  iot-sensors-gateway:
+    container_name: iot-sensors-gateway
+    build:
+      context: iot-sensors-gateway
+      dockerfile: Dockerfile
+    image: iot-sensors-gateway:latest
+    environment:
+      - "SPRING_PROFILES_ACTIVE=localdocker"
+    networks:
+      - mqtt-app
+    depends_on:
+      - mqtt-broker
+      - mongo
+  iot-sensor-1:
+    container_name: iot-sensor-1
+    build:
+      context: iot-sensor
+      dockerfile: Dockerfile
+    image: iot-sensor:latest
+    environment:
+      - "SERIAL_VALUE=serial1"
+      - "TYPE=TEMP"
+      - "TOPIC=temperature.sensor1"
+      - "PERIOD=10000"
+    networks:
+      - mqtt-app
+    depends_on:
+      - mqtt-broker
+      - mongo
+  iot-sensor-2:
+    container_name: iot-sensor-2
+    build:
+      context: iot-sensor
+      dockerfile: Dockerfile
+    image: iot-sensor:latest
+    environment:
+      - "SERIAL_VALUE=serial2"
+      - "TYPE=HEART_RATE"
+      - "TOPIC=heart_rate.sensor2"
+      - "PERIOD=20000"
+    networks:
+      - mqtt-app
+    depends_on:
+      - mqtt-broker
+      - mongo
+  iot-sensor-3:
+    container_name: iot-sensor-3
+    build:
+      context: iot-sensor
+      dockerfile: Dockerfile
+    image: iot-sensor:latest
+    environment:
+      - "SERIAL_VALUE=serial3"
+      - "TYPE=FUEL_READER"
+      - "TOPIC=fuel_reader.sensor3"
+      - "PERIOD=30000"
+    networks:
+      - mqtt-app
+    depends_on:
+      - mqtt-broker
+      - mongo
