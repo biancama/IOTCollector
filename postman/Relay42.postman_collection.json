@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "acabfad8-9d78-4c9f-a531-7d7c8fa233e5",
+		"name": "Relay42",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25397677"
+	},
+	"item": [
+		{
+			"name": "GET All messages",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYXNzaW1vIiwiZXhwIjoxNzMzNzg2NzExLCJpc3MiOiJSZWxheTQyIiwicm9sZXMiOiJBRE1JTiJ9.0m07GAJQnjqCD6XN9nieJ8y2s-4wsd7Rr5K-zwLYbqI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9090/api/v1/messages?start=2022-12-07T22:29:42&end=2025-12-08T22:29:42&page=0&size=10&sort=timestamp&direction=DESC",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"messages"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2022-12-07T22:29:42"
+						},
+						{
+							"key": "end",
+							"value": "2025-12-08T22:29:42"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "sort",
+							"value": "timestamp"
+						},
+						{
+							"key": "direction",
+							"value": "DESC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All messages by serial number",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYXNzaW1vIiwiZXhwIjoxNzMzNzg2MjU1LCJpc3MiOiJSZWxheTQyIiwicm9sZXMiOiJBRE1JTiJ9.T_JJ8sZMhCGcSpkEpGASdt9Gen08S67oJV_X24Lgm5s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9090/api/v1/messages/serial2?start=2022-12-07T22:29:42&end=2025-12-08T22:29:42&page=0&size=10&sort=timestamp&direction=ASC",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"serial2"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2022-12-07T22:29:42"
+						},
+						{
+							"key": "end",
+							"value": "2025-12-08T22:29:42"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "sort",
+							"value": "timestamp"
+						},
+						{
+							"key": "direction",
+							"value": "ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Statistics",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYXNzaW1vIiwiZXhwIjoxNzMzNzg2NzExLCJpc3MiOiJSZWxheTQyIiwicm9sZXMiOiJBRE1JTiJ9.0m07GAJQnjqCD6XN9nieJ8y2s-4wsd7Rr5K-zwLYbqI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9090/api/v1/messages/statistics",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Statistics By Sensor",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYXNzaW1vIiwiZXhwIjoxNzMzNzg2NzExLCJpc3MiOiJSZWxheTQyIiwicm9sZXMiOiJBRE1JTiJ9.0m07GAJQnjqCD6XN9nieJ8y2s-4wsd7Rr5K-zwLYbqI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9090/api/v1/messages/serial2/statistics",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						"serial2",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"massimo\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/api/v1/login",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Documentation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/api/v1/api-docs",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

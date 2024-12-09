@@ -25,16 +25,20 @@ public class MessageService {
     private final StatisticsDTOMapper STATISTICS_MAPPER = Mappers.getMapper(StatisticsDTOMapper.class);
 
     public Page<RelayMessageModel> findAll(LocalDateTime startDate, LocalDateTime endDate, Integer size, Integer pageNumber, String sortField, String sortDirectionStr) {
-        Sort.Direction sortDirection = Sort.Direction.valueOf(sortDirectionStr);
-        PageRequest pageable = PageRequest.of(pageNumber, size).withSort(sortDirection, sortField);
+        PageRequest pageable = getPageRequest(size, pageNumber, sortField, sortDirectionStr);
         Page<RelayMessageEventEntity> singlePage = (startDate != null && endDate != null) ? messageRelayRepository.findAllByTimestampBetween(startDate, endDate, pageable) : messageRelayRepository.findAll(pageable);
         return singlePage.map(MAPPER::toRelayMessageModel);
     }
 
-    public Page<RelayMessageModel> findAllBySerialNumber(String serialNumber, LocalDateTime startDate, LocalDateTime endDate, Integer size, Integer pageNumber, String sortField, String sortDirectionStr) {
+    private static PageRequest getPageRequest(Integer size, Integer pageNumber, String sortField, String sortDirectionStr) {
         Sort.Direction sortDirection = Sort.Direction.valueOf(sortDirectionStr);
         PageRequest pageable = PageRequest.of(pageNumber, size).withSort(sortDirection, sortField);
-        Page<RelayMessageEventEntity> singlePage = (startDate != null && endDate != null) ? messageRelayRepository.findAllBySerialNumberAndTimestampBetween(startDate, endDate, pageable) :  messageRelayRepository.findAllBySerialNumber(serialNumber, pageable);
+        return pageable;
+    }
+
+    public Page<RelayMessageModel> findAllBySerialNumber(String serialNumber, LocalDateTime startDate, LocalDateTime endDate, Integer size, Integer pageNumber, String sortField, String sortDirectionStr) {
+        PageRequest pageable = getPageRequest(size, pageNumber, sortField, sortDirectionStr);
+        Page<RelayMessageEventEntity> singlePage = (startDate != null && endDate != null) ? messageRelayRepository.findAllBySerialNumberAndTimestampBetween(serialNumber, startDate, endDate, pageable) :  messageRelayRepository.findAllBySerialNumber(serialNumber, pageable);
         return singlePage.map(MAPPER::toRelayMessageModel);
     }
 

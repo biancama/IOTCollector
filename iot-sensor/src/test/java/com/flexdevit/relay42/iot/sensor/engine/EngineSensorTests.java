@@ -12,9 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
-public class EngineSensorTest {
+public class EngineSensorTests {
     @Mock
     private IMqttClient client;
 
@@ -23,7 +22,7 @@ public class EngineSensorTest {
 
     @Test
     @DisplayName("When Engine sensor is running then read value method is called")
-    public void whenRunShouldCallReadValueMethod() throws MqttException {
+    void whenRunShouldCallReadValueMethod() throws MqttException {
         var objectUnderTest = new EngineSensor(client, "serial", "topic", 30) {
             @Override
             public MqttMessage readValue() throws JsonProcessingException {

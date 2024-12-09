@@ -5,6 +5,7 @@ import com.flexdevit.relay42.iot.server.model.dto.MessageResponse;
 import com.flexdevit.relay42.iot.server.model.dto.StatisticsResponse;
 import com.flexdevit.relay42.iot.server.service.MessageService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,7 @@ public class MessageController {
 
     @Operation( summary = "Find messages", description = "Get stored messages" )
     @GetMapping
+    @RolesAllowed( {"ADMIN","USER"} )
     public ResponseEntity<Page<MessageResponse>> getMessages(
             @RequestParam(value = "start", required = false) @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "end", required = false) @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -39,6 +41,7 @@ public class MessageController {
 
     @Operation( summary = "Find statistics by serial number", description = "statistics" )
     @GetMapping("/statistics")
+    @RolesAllowed( {"ADMIN"} )
     public ResponseEntity<List<StatisticsResponse>> getStatistics(
     ) {
         return ResponseEntity.ok(
@@ -47,6 +50,7 @@ public class MessageController {
 
     @Operation( summary = "Find messages by serial number", description = "Get stored messages by serial number" )
     @GetMapping("/{serialNumber}")
+    @RolesAllowed( {"ADMIN","USER"} )
     public ResponseEntity<Page<MessageResponse>> getMessagesBySerialNumber(
             @PathVariable("serialNumber") String serialNumber,
             @RequestParam(value = "start", required = false) @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
@@ -63,6 +67,7 @@ public class MessageController {
 
     @Operation( summary = "Find statistics by serial number", description = "statistics" )
     @GetMapping("/{serialNumber}/statistics")
+    @RolesAllowed( {"ADMIN"} )
     public ResponseEntity<List<StatisticsResponse>> getStatisticsBySerialNumber(
             @PathVariable("serialNumber") String serialNumber
     ) {

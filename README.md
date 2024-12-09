@@ -109,15 +109,54 @@ kill -Term 10886
 * Add new topic in the project iot-sensor-gateway int `application.properties` file. For example `mqtt-broker.sensor-topics[3]=new_topic`
 * Implement a concrete class extending `EngineSensor` in iot-sensor
 
+### Rest Apis
+The Project contains a postman collection with all endpoints
+
+The endpoints are:
+
+* GET All messages `http://localhost:9090/api/v1/messages?start=2024-12-07T22:29:42&end=2025-12-08T22:29:42&page=0&size=10&sort=timestamp&direction=DESC`
+* GET All messages by serial number `http://localhost:9090/api/v1/messages/serial2?start=2025-12-07T22:29:42&end=2024-12-08T22:29:42&page=0&size=10&sort=timestamp&direction=DESC`
+* GET All Statistics `http://localhost:9090/api/v1/messages/statistics`
+* GET All Statistics  vy serial number `http://localhost:9090/api/v1/serial2/statistics`
+
+All endpoints need a Bearer token in the `Authorization` header
+
+To fetch the token, please run 
+POST `http://localhost:9090/api/v1/login`
+
+With the following JSON body
+
+```json
+{
+    "username": "massimo",
+    "password": "123456"
+}
+```
+
+
+The system contains 2 users:
+
+username: massimo password:123456 role:ADMIN
+
+username: koen password:123456 role:USER
+
+ADMIN can call any endpoints
+
+USER can call any endpoints except statistics
+
+
+
 ### Rest API documentation
 
 Simply run a GET rest call to 
 
 `http://localhost:9090/api/v1/api-docs`
 
-
+This endpoint is outside security
 ### Limitation
 * Add proper logic Iot-sensors-gateway for validation, orchestration devices
 * Add liquibase support for H2
 * The server has a simple security. It should have a signed certificate from a REAL authorization server
 * Create completely different messages for different type of sensors
+* Improve security. Especially in mqtt
+* Etc.

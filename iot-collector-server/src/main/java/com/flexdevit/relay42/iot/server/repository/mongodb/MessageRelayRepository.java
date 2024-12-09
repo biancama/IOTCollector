@@ -16,7 +16,7 @@ public interface MessageRelayRepository extends MongoRepository<RelayMessageEven
 
     Page<RelayMessageEventEntity> findAllByTimestampBetween(LocalDateTime timestampAfter, LocalDateTime timestampBefore, Pageable pageable);
 
-    Page<RelayMessageEventEntity> findAllBySerialNumberAndTimestampBetween(LocalDateTime startDate, LocalDateTime endDate, PageRequest pageable);
+    Page<RelayMessageEventEntity> findAllBySerialNumberAndTimestampBetween(String serialNumber, LocalDateTime timestampAfter, LocalDateTime timestampBefore, PageRequest pageable);
 
 
     @Aggregation(pipeline = {"""
