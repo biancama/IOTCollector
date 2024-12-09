@@ -1,7 +1,25 @@
 # IoT Collector
 
-##
+## Description
 Simple server for collecting Iot data from multiple devices.
+The application consists of three services:
+* Iot-collector-server rest application to display messages received from the sensors and various statistics
+* Iot-sensors-gateway simple application responsible for receiving messages from the sensors validate messages and dispatch to the sever
+  The service should be responsible to register a new sensor, collect metrics from sensors and watchdog the devices.
+* Iot-sensor Application to simulate a sensor
+
+### Dependencies
+* Mqtt-broker message broker standard de facto for device communication.
+* MongoDB NOSql db for storing sensors' messages.
+* H2 db store user credential
+
+### Architecture
+
+
+![Architecture](images/architecture.png)
+
+
+
 ### Pre-Requisite
 * Java 17
 * maven
@@ -16,7 +34,11 @@ Open a terminal in the project root and run:
 `docker-compose --file docker-compose-with-solution.yml up -d`
 
 ### Build the app
-If you want to check the app and run step by step
+If you want to check the app and run step by step. 
+
+If you ran `docker-compose --file docker-compose-with-solution.yml up -d`. Please stop some containers
+
+`docker stop iot-sensor-3 iot-sensor-2 iot-sensor-1 iot-sensors-gateway iot-collector-server`
 
 Open a terminal in the project root and run:
 
@@ -49,6 +71,14 @@ Open a terminal in the project root and run:
 `java -jar iot-sensors-gateway/target/iot-sensors-gateway-1.0-SNAPSHOT.jar`
 
 #### iot-sensor
+If you want to run a single sensor
+
+`java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial1 temperature.sensor1 -t TEMP -f 10000 &`
+
+`java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar -h`
+
+Display a helper
+
 Open a terminal in the project root and run:
 
 `sh run_sensors.sh`
@@ -62,9 +92,9 @@ Open a terminal in the project root and run:
 
 you should see something like:
 ```shell
-503 10884     1   0  5:37PM ttys015    0:02.76 java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial1 temperature.sensor1 -f 10000
-503 10885     1   0  5:37PM ttys015    0:02.72 java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial2 temperature.sensor2 -f 20000
-503 10886     1   0  5:37PM ttys015    0:02.67 java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial3 temperature.sensor3 -f 30000
+503 10884     1   0  5:37PM ttys015    0:02.76 java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial1 temperature.sensor1 -t TEMP -f 10000
+503 10885     1   0  5:37PM ttys015    0:02.72 java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial2 heart_rate.sensor2 -t HEART_RATE -f 20000
+503 10886     1   0  5:37PM ttys015    0:02.67 java -jar iot-sensor/target/iot-sensor-1.0-SNAPSHOT-fat.jar serial3 temperature.sensor3  -t FUEL_READER -f 30000
 ```
 
 Then kill them with 
@@ -75,3 +105,19 @@ kill -Term 10886
 ```
 
 
+### How to add a new sensor type
+* Add new topic in the project iot-sensor-gateway int `application.properties` file. For example `mqtt-broker.sensor-topics[3]=new_topic`
+* Implement a concrete class extending `EngineSensor` in iot-sensor
+
+### Rest API documentation
+
+Simply run a GET rest call to 
+
+`http://localhost:9090/api/v1/api-docs`
+
+
+### Limitation
+* Add proper logic Iot-sensors-gateway for validation, orchestration devices
+* Add liquibase support for H2
+* The server has a simple security. It should have a signed certificate from a REAL authorization server
+* Create completely different messages for different type of sensors
